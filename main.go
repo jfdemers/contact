@@ -45,7 +45,7 @@ func handler(settings *Settings) func(http.ResponseWriter, *http.Request) {
 			smtpHost := settings.SMTP
 			smtpPort := settings.Port
 
-			t, err := template.ParseFiles("template.html")
+			t, err := template.ParseFiles("/etc/contact/template.html")
 			if err != nil {
 				log.Println("Error processing template.")
 			}
@@ -93,7 +93,7 @@ func startServer(settings *Settings) (*http.Server, error) {
 }
 
 func getSettings() (*Settings, error) {
-	data, err := ioutil.ReadFile("./settings.yaml")
+	data, err := ioutil.ReadFile("/etc/contact/settings.yaml")
 	if err != nil {
 		return nil, err
 	}
